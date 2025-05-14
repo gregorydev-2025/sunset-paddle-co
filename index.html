@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunset Paddle Co. - Paddleboard & Kayak Rentals in Rehoboth Beach</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --sand: #f4e8d2;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Montserrat', 'Arial', sans-serif;
         }
         body {
-            color: #333;
-            line-height: 1.6;
+            color: var(--dark);
+            line-height: 1.7;
+            background-color: var(--light);
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
         }
         header {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://www.townofrehoboth.com/sites/default/files/styles/full_node_primary/public/2021-05/rehoboth-beach-boardwalk.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -29,32 +43,38 @@
             color: white;
         }
         .logo {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
-            font-weight: bold;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .tagline {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 2rem;
-            font-style: italic;
+            font-weight: 400;
+            max-width: 800px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
         .btn {
             display: inline-block;
-            background: #FF6B6B;
+            background: var(--accent);
             color: white;
-            padding: 10px 30px;
+            padding: 15px 40px;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .btn:hover {
-            background: #FF8E8E;
+            background: #ff3d8a;
             transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
         nav {
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -66,88 +86,206 @@
             padding: 20px;
         }
         nav ul li {
-            margin: 0 15px;
+            margin: 0 20px;
         }
         nav ul li a {
             text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            transition: color 0.3s ease;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
         nav ul li a:hover {
-            color: #FF6B6B;
+            color: var(--primary);
+            background: rgba(58, 134, 255, 0.1);
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 80px 20px;
         }
         h2 {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            color: #444;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
         .about {
             display: flex;
             align-items: center;
-            margin-bottom: 50px;
+            margin-bottom: 80px;
+            gap: 50px;
         }
         .about-text {
             flex: 1;
-            padding-right: 30px;
+        }
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
         }
         .about-image {
             flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .about-image img {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        .about-image:hover img {
+            transform: scale(1.05);
         }
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
             margin-top: 50px;
         }
         .service-card {
             background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
         }
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
         }
         .service-card h3 {
-            margin-bottom: 15px;
-            color: #FF6B6B;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-size: 1.5rem;
         }
-        footer {
-            background: #333;
-            color: white;
+        .service-card p {
+            color: #666;
+        }
+        .testimonials {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://www.delawareonline.com/gcdn/presto/2021/06/16/PDEM/1c4a5c9e-1c7e-4a3e-9a5d-5d0c4c7f1f9b-Rehoboth_Beach_6-16-21_JS_005.JPG');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
             text-align: center;
-            padding: 30px 20px;
+        }
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .testimonial i {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
             margin-top: 50px;
         }
+        .contact-method {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .contact-method i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+        .footer-logo {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .footer-tagline {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .social-links {
-            margin-top: 20px;
+            margin: 30px 0;
         }
         .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
             color: white;
             margin: 0 10px;
             font-size: 1.5rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            border-radius: 50%;
         }
         .social-links a:hover {
-            color: #FF6B6B;
+            background: var(--accent);
+            transform: translateY(-5px);
         }
         .copyright {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 0.9rem;
-            color: #aaa;
+            color: rgba(255,255,255,0.7);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--accent);
         }
     </style>
 </head>
@@ -164,6 +302,7 @@
             <li><a href="rentals.html">Rentals</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -172,11 +311,12 @@
         <h2>About Sunset Paddle Co.</h2>
         <div class="about">
             <div class="about-text">
-                <p>At Sunset Paddle Co., we believe the best moments happen on the water—especially when the sun begins to kiss the horizon. Based in the heart of Rehoboth Beach, we offer thoughtfully curated paddleboard and kayak rentals for locals and visitors looking to experience Delaware's coast from a new perspective.</p>
-                <p>Whether you're a seasoned paddler or trying it for the first time, our team is here to make your journey effortless, safe, and unforgettable. We specialize in golden hour adventures—those calm, magical times of day when the bay glows with color and the world feels still.</p>
+                <p><i class="fas fa-water" style="color: var(--primary); margin-right: 10px;"></i> At Sunset Paddle Co., we believe the best moments happen on the water—especially when the sun begins to kiss the horizon. Based in the heart of Rehoboth Beach, we offer thoughtfully curated paddleboard and kayak rentals for locals and visitors looking to experience Delaware's coast from a new perspective.</p>
+                <p><i class="fas fa-sun" style="color: var(--accent); margin-right: 10px;"></i> Whether you're a seasoned paddler or trying it for the first time, our team is here to make your journey effortless, safe, and unforgettable. We specialize in golden hour adventures—those calm, magical times of day when the bay glows with color and the world feels still.</p>
+                <p><i class="fas fa-heart" style="color: var(--accent); margin-right: 10px;"></i> We're more than just a rental shop—we're a locally rooted experience. As a family-owned business, we pride ourselves on personal service, community connection, and helping people unplug and reconnect with nature.</p>
             </div>
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sunset kayaking">
+                <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_533,q_75,w_800/v1/clients/delaware/DB_RehobothBeachBoardwalk_7d8e7e1a-2c8b-4d9e-bb9e-8c5f8d1c3b5f.jpg" alt="Rehoboth Beach">
             </div>
         </div>
     </div>
@@ -185,41 +325,89 @@
         <h2>Our Services</h2>
         <div class="services">
             <div class="service-card">
+                <i class="fas fa-water"></i>
                 <h3>Paddleboard Rentals</h3>
-                <p>Explore the calm waters of Rehoboth Bay on one of our premium paddleboards. Perfect for all skill levels, our boards come with all necessary safety equipment.</p>
+                <p>Explore the calm waters of Rehoboth Bay on one of our premium paddleboards. Perfect for all skill levels, our boards come with all necessary safety equipment and a brief orientation.</p>
             </div>
             <div class="service-card">
+                <i class="fas fa-ship"></i>
                 <h3>Kayak Rentals</h3>
-                <p>Single or tandem kayaks available for those who prefer to sit back and enjoy the scenery. Great for couples or families wanting to explore together.</p>
+                <p>Single or tandem kayaks available for those who prefer to sit back and enjoy the scenery. Great for couples or families wanting to explore together with included life jackets.</p>
             </div>
             <div class="service-card">
+                <i class="fas fa-sunset"></i>
                 <h3>Sunset Tours</h3>
-                <p>Join our guided sunset tours where we'll take you to the best spots to watch the sky transform into a masterpiece of colors.</p>
+                <p>Join our guided sunset tours where we'll take you to the best spots to watch the sky transform into a masterpiece of colors over the Delaware coast.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonials" id="testimonials">
+        <div class="testimonial-container">
+            <h2 style="color: var(--primary);">What Our Customers Say</h2>
+            <div class="testimonial">
+                <i class="fas fa-quote-left"></i>
+                <p>The sunset paddle tour was absolutely magical! The guides knew all the best spots to watch the colors change over the water. Can't wait to come back next summer!</p>
+                <div class="testimonial-author">- Sarah K., Philadelphia</div>
+            </div>
+            <div class="testimonial">
+                <i class="fas fa-quote-left"></i>
+                <p>As first-time paddleboarders, we were nervous but the team made us feel completely comfortable. The equipment was top-notch and the views were unforgettable.</p>
+                <div class="testimonial-author">- Mark & Jessica, Washington DC</div>
             </div>
         </div>
     </div>
 
     <div class="container" id="contact">
         <h2>Contact Us</h2>
-        <p style="text-align: center;">Ready to book your adventure or have questions? Reach out to us!</p>
-        <p style="text-align: center; margin-top: 20px;">
-            <strong>Email:</strong> hello@sunsetpaddleco.com<br>
-            <strong>Phone:</strong> (302) 555-1234<br>
-            <strong>Address:</strong> 123 Coastal Highway, Rehoboth Beach, DE 19971
-        </p>
+        <div class="contact-info">
+            <div class="contact-method">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>120802-20898 East Dr, Rehoboth Beach, DE 19971</p>
+            </div>
+            <div class="contact-method">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Phone</h3>
+                <p>(302) 555-1234</p>
+            </div>
+            <div class="contact-method">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>talleygregory14@gmail.com</p>
+            </div>
+            <div class="contact-method">
+                <i class="fas fa-clock"></i>
+                <h3>Hours</h3>
+                <p>Daily: 7am - Sunset<br>Seasonal hours may vary</p>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>Follow us on social media to see daily sunset paddles and special offers!</p>
-        <div class="social-links">
-            <a href="https://x.com/SunsetPaddleCo" target="_blank">𝕏</a>
-            <a href="https://www.linkedin.com/in/gregory-talley-912617365/" target="_blank">LinkedIn</a>
-            <a href="https://www.tiktok.com/@sunsetpaddleco" target="_blank">TikTok</a>
-            <a href="https://www.pinterest.com/sunsetpaddleco/" target="_blank">Pinterest</a>
-            <a href="https://www.youtube.com/@SunsetPaddleCo" target="_blank">YouTube</a>
+        <div class="footer-logo">Sunset Paddle Co.</div>
+        <div class="footer-tagline">Slow down. Soak it in. Paddle into the sunset. That's the Sunset Paddle Co. way.</div>
+        
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="rentals.html">Rentals</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
         </div>
+        
+        <div class="social-links">
+            <a href="https://x.com/SunsetPaddleCo" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/gregory-talley-912617365/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.tiktok.com/@sunsetpaddleco" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.pinterest.com/sunsetpaddleco/" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+            <a href="https://www.youtube.com/@SunsetPaddleCo" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        
         <div class="copyright">
-            &copy; 2023 Sunset Paddle Co. All rights reserved.
+            &copy; 2023 Sunset Paddle Co. All rights reserved.<br>
+            Proudly serving Rehoboth Beach, Delaware
         </div>
     </footer>
 </body>
